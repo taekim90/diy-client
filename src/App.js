@@ -33,7 +33,10 @@ function App() {
             exact path='/blogs'
             element={<Blogs blogs={blogs} setBlogs={setBlogs}/>}
           />
-          <Route />
+          <Route 
+            path='/blogs/:id'
+            element={<Blog blogs={blogs} />}
+          />
         </Routes>
       </Router>
     </div>
