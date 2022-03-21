@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from "axios"
 import Form from "../Form"
 
@@ -23,31 +22,17 @@ export default function Blogs({ blogs, setBlogs}) {
                 })
                 // if you return a promise from a .then -- you can .then again!
                 // this is called promise chaining!
-                // can comment this out and put in bounties into the dependency of app
+                // can comment this out and put in blogs into the dependency of app
                 return axios.get(process.env.REACT_APP_SERVER_URL + '/blog')
             })
             .then(response => setBlogs(response.data)) // this is changing the parent state, which causes the re-render
             .catch(console.log)
     }
 
-
-
-    const blogsLinks = blogs.map((blog, index) => {
-        return (
-            <div key={`blog-link${index}`}>
-                <h1><Link to={`/blogs/${blog._id}`}>{blog.title}</Link></h1>
-                {/* <h1>{blog.title}</h1> */}
-                <h3>By:{blog.name}</h3>
-                <p>{blog.content}</p>
-                {/* <p>{blog.comments}</p> */}
-            </div>
-        )
-    })
-
     return (
         <>
             <h1>Blogs Page</h1>
-            {blogsLinks}
+            {blogs}
 
             <h1>Create New Blog</h1>
             <Form 

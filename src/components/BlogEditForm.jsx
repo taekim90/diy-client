@@ -2,13 +2,14 @@ import { useState } from 'react'
 import axios from 'axios'
 import Form from './Form'
 
-export default function BlogEditForm({ matchedBlog, setShowForm, showForm }) {
+export default function BlogEditForm({ blog, setShowForm, showForm }) {
 
-    const [blogForm, setBlogForm] = useState(matchedBlog)
+    const [blogForm, setBlogForm] = useState(blog)
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.put(`${process.env.REACT_APP_SERVER_URL}/blog/${matchedBlog._id}`, blogForm)
+        // axios.method(url, request body, options)
+        axios.put(`${process.env.REACT_APP_SERVER_URL}/blog/${blog._id}`, blogForm)
             .then(response => {
                 console.log(response.data)
                 setShowForm(!showForm)
